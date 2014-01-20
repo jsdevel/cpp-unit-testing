@@ -13,15 +13,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+#include <cstdarg>
+#include <iostream>
+#include <ctime>
 #define assert(cond) \
   if(!(cond)){ \
     printf("Assertion failed for: %s", #cond); \
-    throw 1; \
+    exit(2); \
   }
 
-#define fail(msg)   \
-  cout << "Fail: " << #msg << '\n'; \
-  throw 1;
+void fail(string msg){
+  cout << '\n' << "FAIL: " << msg << '\n';
+  exit(1);
+}
 
 #ifdef USE_AFTER
   #define __ADD_AFTER()             \
@@ -41,6 +45,16 @@ limitations under the License.
   #define __ADD_BEFORE()
 #endif
 
+#define SUITE() \
+  time_t __start_seconds = time(0); \
+  cout << "========== SUITE " << __FILE__ << '\n';
+
+#define END() \
+  time_t __end_seconds = time(0); \
+  cout << "========== " \
+       << "Completed in " \
+       << difftime(__end_seconds, __start_seconds) << " seconds" << '\n';
+  
 #define TEST(name)                  \
   cout << " |__ " << #name << '\n'; \
   __ADD_BEFORE()                    \
