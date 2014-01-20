@@ -3,7 +3,7 @@ cpp-unit-testing
 
 A single header file is all you need :)
 
-The goal of this project is to allow testing of c++ to remain easy and flexible, without the need to install libraries.  You can simply copy and paste this file into a %.h file within your project.
+The goal of this project is to allow testing of c++ to remain easy and flexible, without the need to install libraries.  You can simply copy header file into your project to get started.
 
 ##Example
 ````cpp
@@ -37,27 +37,25 @@ namespace test {
 
   void invalid_pins_for_constructor_throw_error(){
     int pins [5] = {1, 2, 0, 40, 50};
-    bool hadException = false;
     for(int i = 0;i<5;i++){
       try {
         PWM pwm(pins[i], 0, 1);
-        printf("didn't throw for: %i", pins[i]);
-        hadException = true;
+        fail("didn't throw for pin");
       } catch(...){
         continue;
       }
     }
-    assert(!hadException);
   }
 
-  void changing_duty_cycle_so_value_greater_than_100_returns_100(){
-    cout  << pwm->getDutyCycle() << '\n';
+  void changing_duty_cycle_to_value_greater_than_100_returns_100(){
+    pwm->setDutyCycle(75);
+    assert(pwm->getDutyCycle() == 75);
   }
 }
 
 int main(){
   TEST(valid_pins_for_constructor_throw_no_error);
   TEST(invalid_pins_for_constructor_throw_error);
-  TEST(changing_duty_cycle_so_value_greater_than_100_returns_100);
+  TEST(changing_duty_cycle_to_value_greater_than_100_returns_100);
 }
 ````
