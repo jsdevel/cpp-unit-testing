@@ -18,12 +18,12 @@ limitations under the License.
 #include <ctime>
 #define assert(cond) \
   if(!(cond)){ \
-    printf("Assertion failed for: %s", #cond); \
+    printf("    |__ ASSERTION FAILED: %s", #cond); \
     exit(2); \
   }
 
 void fail(string msg){
-  cout << '\n' << "FAIL: " << msg << '\n';
+  cout << "    |__ FAIL: " << msg << '\n';
   exit(1);
 }
 
@@ -60,5 +60,4 @@ void fail(string msg){
   __ADD_BEFORE()                    \
   test::name();                     \
   __ADD_AFTER()
-
 
