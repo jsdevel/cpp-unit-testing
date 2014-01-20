@@ -3,7 +3,7 @@ cpp-unit-testing
 
 A single header file is all you need :)
 
-The goal of this project is to allow testing of c++ to remain easy and flexible, without the need to install libraries.  You can simply copy header file into your project to get started.
+The goal of this project is to allow testing of c++ to remain easy and flexible, without the need to install libraries.  You can simply copy the header file into your project to get started.
 
 ##Example
 ````cpp
