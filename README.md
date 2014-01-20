@@ -51,7 +51,6 @@ int main(){
   SUITE();
   TEST(valid_pins_for_constructor_throw_no_error);
   TEST(invalid_pins_for_constructor_throw_error);
-  TEST(changing_duty_cycle_so_value_greater_than_100_returns_100);
   END();
 }
 ````
