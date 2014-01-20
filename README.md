@@ -13,7 +13,6 @@ The goal of this project is to allow testing of c++ to remain easy and flexible,
 
 using namespace std;
 
-//Tell assert to call `before()` and `after()`;
 #define USE_BEFORE 1
 #define USE_AFTER 1
 #include "helpers/assert.h"
@@ -40,22 +39,19 @@ namespace test {
     for(int i = 0;i<5;i++){
       try {
         PWM pwm(pins[i], 0, 1);
-        fail("didn't throw for pin");
+        fail("didn't throw for");
       } catch(...){
         continue;
       }
     }
   }
-
-  void changing_duty_cycle_to_value_greater_than_100_returns_100(){
-    pwm->setDutyCycle(75);
-    assert(pwm->getDutyCycle() == 75);
-  }
 }
 
 int main(){
+  SUITE();
   TEST(valid_pins_for_constructor_throw_no_error);
   TEST(invalid_pins_for_constructor_throw_error);
-  TEST(changing_duty_cycle_to_value_greater_than_100_returns_100);
+  TEST(changing_duty_cycle_so_value_greater_than_100_returns_100);
+  END();
 }
 ````
